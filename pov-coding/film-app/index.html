@@ -384,11 +384,20 @@
       const data = await response.json();
       const pages = data.query ? data.query.pages : [];
 
-      // nur echte Filme mit Plakat, in der Reihenfolge der Suchtreffer
+      // nur Filme mit Plakat, in der Reihenfolge der Suchtreffer
       return pages
-        .filter((page) => page.original && (page.description || "").toLowerCase().includes("film"))
+        .filter(isFilm)
         .sort((a, b) => a.index - b.index)
         .map(toFilm);
+    }
+
+    // einzelner Film? (keine Filmreihe wie "Fantasy film series" und keine Uebersichtsseite)
+    function isFilm(page) {
+      const description = (page.description || "").toLowerCase();
+      return page.original
+        && description.includes("film")
+        && !description.includes("series")
+        && !description.includes("adaptations");
     }
 
     function toFilm(page) {
