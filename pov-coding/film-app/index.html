@@ -379,25 +379,27 @@
     let popularFilms = [];
     let galleryFilms = [];
 
-    async function loadFilms(params) {
+    // order (optional): Liste mit Wikipedia-Titeln in der gewuenschten Reihenfolge
+    async function loadFilms(params, order) {
       const response = await fetch(API + params);
       const data = await response.json();
       const pages = data.query ? data.query.pages : [];
 
-      // nur Filme mit Plakat, in der Reihenfolge der Suchtreffer
+      // nur Filme mit Plakat, sortiert wie die Suchtreffer (oder wie order)
       return pages
         .filter(isFilm)
-        .sort((a, b) => a.index - b.index)
+        .sort((a, b) => order ? order.indexOf(a.title) - order.indexOf(b.title) : a.index - b.index)
         .map(toFilm);
     }
 
-    // einzelner Film? (keine Filmreihe wie "Fantasy film series" und keine Uebersichtsseite)
+    // einzelner Film? (keine Filmreihe, kein Musical, keine Uebersichtsseite)
     function isFilm(page) {
       const description = (page.description || "").toLowerCase();
       return page.original
         && /\bfilm\b/.test(description) // das ganze Wort "film", nicht "filming"
-        && !description.includes("series")
-        && !description.includes("adaptations");
+        && !description.includes("series") // "Fantasy film series"
+        && !description.includes("stage") // "Stage adaptation of the 2013 Disney film"
+        && !description.includes("adaptations"); // "Film adaptations of the DC superhero"
     }
 
     function toFilm(page) {
@@ -426,11 +428,8 @@
         .map((page) => page.langlinks[0].title);
       if (titles.length === 0) return [];
 
-      const films = await loadFilms("&titles=" + encodeURIComponent(titles.join("|")));
-
-      // wieder in die Reihenfolge der deutschen Suche bringen
-      const position = (film) => titles.findIndex((title) => title.split(" (")[0] === film.title);
-      return films.sort((a, b) => position(a) - position(b));
+      // Reihenfolge der deutschen Suche beibehalten
+      return loadFilms("&titles=" + encodeURIComponent(titles.join("|")), titles);
     }
 
     function save() {
@@ -587,8 +586,8 @@
         if (query !== search.value.trim()) return; // inzwischen weitergetippt
 
         // beide Listen zusammenfuegen, jeden Film nur einmal
-        const films = [...german];
-        for (const film of english) {
+        const films = [];
+        for (const film of [...german, ...english]) {
           if (!films.some((other) => sameFilm(other, film))) films.push(film);
         }
 
