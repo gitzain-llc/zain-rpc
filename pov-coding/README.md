@@ -17,9 +17,10 @@ CEVIO-Schriftzug im Hintergrund).
 - Plakate, Titel und Jahr kommen kostenlos von Wikipedia, ohne Anmeldung und ohne
   API-Schlüssel. Der PC braucht dafür Internet. Fehlt ein Bild, gibt es ein lila
   Plakat mit dem Anfangsbuchstaben.
-- In der Suche am besten **englische bzw. Originaltitel** verwenden, weil die Daten
-  von der englischen Wikipedia kommen. Deutsche Titel klappen manchmal
-  („Der Pate“ findet „The Godfather“), bringen aber auch Zufallstreffer mit.
+- Die Suche versteht **deutsche und englische Titel**: „Fluch der Karibik“ findet die
+  Pirates-of-the-Caribbean-Filme, „Die Eiskönigin“ findet „Frozen“. Dafür fragt die App
+  zusätzlich die deutsche Wikipedia und folgt dem Link zum englischen Artikel.
+  Angezeigt wird der englische Titel (so heißt der Film auf dem Plakat).
 - Die Galerie kannst du ganz einfach ändern: in der Liste `POPULAR` im Code
   Filme dazuschreiben oder löschen (so wie sie auf Wikipedia heißen).
 

@@ -392,14 +392,15 @@
         .map(toFilm);
     }
 
-    // einzelner Film? (keine Filmreihe, kein Musical, keine Uebersichtsseite)
+    // einzelner Film? (keine Filmreihe, kein Musical, keine Person, keine Uebersichtsseite)
     function isFilm(page) {
       const description = (page.description || "").toLowerCase();
       return page.original
         && /\bfilm\b/.test(description) // das ganze Wort "film", nicht "filming"
         && !description.includes("series") // "Fantasy film series"
         && !description.includes("stage") // "Stage adaptation of the 2013 Disney film"
-        && !description.includes("adaptations"); // "Film adaptations of the DC superhero"
+        && !description.includes("adaptations") // "Film adaptations of the DC superhero"
+        && !description.includes("("); // Personen: "German film composer (born 1957)"
     }
 
     function toFilm(page) {
