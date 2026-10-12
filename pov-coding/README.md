@@ -17,9 +17,9 @@ CEVIO-Schriftzug im Hintergrund).
 - Plakate, Titel und Jahr kommen kostenlos von Wikipedia, ohne Anmeldung und ohne
   API-Schlüssel. Der PC braucht dafür Internet. Fehlt ein Bild, gibt es ein lila
   Plakat mit dem Anfangsbuchstaben.
-- In der Suche am besten **englische bzw. Originaltitel** verwenden
-  (z. B. „The Godfather“ statt „Der Pate“), weil die Plakate von der englischen
-  Wikipedia kommen.
+- In der Suche am besten **englische bzw. Originaltitel** verwenden, weil die Daten
+  von der englischen Wikipedia kommen. Deutsche Titel klappen manchmal
+  („Der Pate“ findet „The Godfather“), bringen aber auch Zufallstreffer mit.
 - Die Galerie kannst du ganz einfach ändern: in der Liste `POPULAR` im Code
   Filme dazuschreiben oder löschen (so wie sie auf Wikipedia heißen).
 

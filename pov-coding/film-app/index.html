@@ -395,7 +395,7 @@
     function isFilm(page) {
       const description = (page.description || "").toLowerCase();
       return page.original
-        && description.includes("film")
+        && /\bfilm\b/.test(description) // das ganze Wort "film", nicht "filming"
         && !description.includes("series")
         && !description.includes("adaptations");
     }
