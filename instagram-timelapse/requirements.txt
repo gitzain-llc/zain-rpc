@@ -1,0 +1,3 @@
+imageio-ffmpeg>=0.5   # bringt ffmpeg gleich mit – keine extra Installation nötig
+Pillow>=10.0          # zum Laden, Drehen und Zuschneiden der Fotos
+# pillow-heif         # optional: einkommentieren für iPhone-Fotos im .heic-Format
