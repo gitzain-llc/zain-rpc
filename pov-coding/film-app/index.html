@@ -410,6 +410,29 @@
       };
     }
 
+    // deutsche Titel wie "Fluch der Karibik": in der deutschen Wikipedia suchen
+    // und dem Link zur englischen Seite folgen (dort gibt es die Plakate)
+    async function loadGermanFilms(query) {
+      const url = "https://de.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*"
+        + "&generator=search&gsrlimit=10&prop=langlinks&lllang=en&gsrsearch=" + encodeURIComponent(query + " Film");
+
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!data.query) return [];
+
+      const titles = data.query.pages
+        .filter((page) => page.langlinks)
+        .sort((a, b) => a.index - b.index)
+        .map((page) => page.langlinks[0].title);
+      if (titles.length === 0) return [];
+
+      const films = await loadFilms("&titles=" + encodeURIComponent(titles.join("|")));
+
+      // wieder in die Reihenfolge der deutschen Suche bringen
+      const position = (film) => titles.findIndex((title) => title.split(" (")[0] === film.title);
+      return films.sort((a, b) => position(a) - position(b));
+    }
+
     function save() {
       localStorage.setItem("movies", JSON.stringify(movies));
 
@@ -419,8 +442,13 @@
       renderLists();
     }
 
+    // gleicher Film? Titel und Jahr vergleichen (es gibt z. B. mehrere Filme namens "Joker")
+    function sameFilm(a, b) {
+      return a.title === b.title && a.year === b.year;
+    }
+
     function findSaved(film) {
-      return movies.find((movie) => movie.title === film.title);
+      return movies.find((movie) => sameFilm(movie, film));
     }
 
     function button(text, onClick, className) {
@@ -551,8 +579,18 @@
 
       galleryTitle.textContent = "Suche ...";
       try {
-        const films = await loadFilms("&generator=search&gsrlimit=20&gsrsearch=" + encodeURIComponent(query + " film"));
+        // englische und deutsche Wikipedia gleichzeitig fragen
+        const [english, german] = await Promise.all([
+          loadFilms("&generator=search&gsrlimit=20&gsrsearch=" + encodeURIComponent(query + " film")),
+          loadGermanFilms(query).catch(() => []) // klappt das nicht, reicht die englische Suche
+        ]);
         if (query !== search.value.trim()) return; // inzwischen weitergetippt
+
+        // beide Listen zusammenfuegen, jeden Film nur einmal
+        const films = [...german];
+        for (const film of english) {
+          if (!films.some((other) => sameFilm(other, film))) films.push(film);
+        }
 
         // Filme mit genau dem gesuchten Titel zuerst (z. B. "Up" vor "Don't Look Up")
         const exact = (film) => film.title.toLowerCase() === query.toLowerCase();
