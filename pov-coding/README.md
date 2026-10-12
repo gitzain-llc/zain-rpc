@@ -1,27 +1,31 @@
-# POV: Ich code meine eigene To-Do-App ✅
+# POV: Ich code meine eigene Film-App 🎬
 
 Code zum Abtippen in VS Code, mit Endergebnis für ein Instagram-Reel.
 
-**[`todo-liste/index.html`](todo-liste/index.html):** eine To-Do-App im Cevio-Design
+**[`film-app/index.html`](film-app/index.html):** eine Filmliste im Cevio-Design
 (dunkel, Lila-Akzent #8a67ff, Schriften Syne + Outfit, großer CEVIO-Schriftzug im Hintergrund).
-Aufgabe eintippen → **Enter** oder **Hinzufügen**. Auf den Text klicken → abhaken
-(der lila Fortschrittsbalken füllt sich). **×** → löschen. Die Liste bleibt gespeichert,
-auch nach dem Schließen des Browsers. Für die Cevio-Schriften braucht der PC Internet.
 
-Bonus: [`galaxie/index.html`](galaxie/index.html) ist eine leuchtende, drehende Galaxie
-(Maus bewegen → sie folgt, klicken → neue Farben). Kann nichts, sieht aber gut aus.
+- Filmtitel eintippen → **Enter** oder **Hinzufügen** → landet bei **„Will ich sehen“**
+- **Gesehen** → der Film wandert in die Spalte **„Gesehen“**
+- **Nochmal** → zurück zu „Will ich sehen“
+- **×** → löschen
+- Die Liste bleibt gespeichert, auch nach dem Schließen des Browsers
+- Für die Cevio-Schriften braucht der PC Internet
+
+Weitere Projekte im selben Stil:
+[`todo-liste/index.html`](todo-liste/index.html) (To-Do-App im Cevio-Design) und
+[`galaxie/index.html`](galaxie/index.html) (leuchtende Galaxie, rein zum Anschauen).
 
 ## Ablauf
 
-1. Auf dem Desktop einen Ordner anlegen, z. B. `todo-app`
+1. Auf dem Desktop einen Ordner anlegen, z. B. `film-app`
 2. VS Code → **Datei → Ordner öffnen…** → den Ordner wählen
 3. Neue Datei `index.html` anlegen
-4. Den Code aus [`todo-liste/index.html`](todo-liste/index.html) abtippen und mit **Strg+S** (Mac: Cmd+S) speichern
+4. Den Code aus [`film-app/index.html`](film-app/index.html) abtippen und mit
+   **Strg+S** (Mac: Cmd+S) speichern
 5. Ergebnis öffnen: Rechtsklick auf `index.html` → **„Im Datei-Explorer anzeigen“**
    (Mac: „Im Finder anzeigen“) → Doppelklick auf die Datei
 6. Im Browser **F11** drücken (Mac: Ctrl+Cmd+F) für Vollbild
-
-Die Überschrift `Meine To-Dos` kannst du natürlich ändern.
 
 ## Tipps zum Abtippen
 
@@ -30,8 +34,9 @@ Die Überschrift `Meine To-Dos` kannst du natürlich ändern.
 - Klammern auf der deutschen Tastatur:
   `{ }` = AltGr+7 / AltGr+0, `[ ]` = AltGr+8 / AltGr+9
   (Mac: `{ }` = Alt+8 / Alt+9, `[ ]` = Alt+5 / Alt+6)
-- Funktioniert etwas nicht (z. B. passiert beim Klick auf + nichts), ist irgendwo ein Tippfehler. Im Browser **F12**
-  drücken und auf „Console“ klicken, dort steht die Zeile mit dem Fehler.
+- Funktioniert etwas nicht (z. B. passiert beim Klick auf „Hinzufügen“ nichts),
+  ist irgendwo ein Tippfehler. Im Browser **F12** drücken und auf „Console“
+  klicken, dort steht die Zeile mit dem Fehler.
 
 ## Tipps für das POV-Video
 
@@ -39,10 +44,10 @@ Die Überschrift `Meine To-Dos` kannst du natürlich ändern.
   den Kamera-Modus **Zeitraffer** nehmen.
 - In VS Code mit **Strg +** die Schrift größer machen, damit man den Code im
   Video erkennt. Dunkles Theme sieht am besten aus.
-- Das Ende **nicht im Zeitraffer**, sondern als normales Video filmen: Datei
-  öffnen, Vollbild, ein paar Aufgaben eintippen, abhaken, löschen. In Instagram
-  beide Clips hintereinander setzen, das ist der Wow-Moment.
-- Lustige oder echte Aufgaben eintippen (z. B. „Reel posten“ → abhaken), das
-  kommt im Video gut an.
+- Das Ende **nicht im Zeitraffer**, sondern als normales Video filmen: App
+  öffnen, Vollbild, ein paar Filme eintragen und auf „Gesehen“ klicken. In
+  Instagram beide Clips hintereinander setzen, das ist der Wow-Moment.
+- Bekannte Filme eintragen (z. B. „Interstellar“, „Dune“, „Oppenheimer“),
+  das erkennen die Leute im Video sofort.
 - Flimmern oder Streifen beim Filmen vom Bildschirm: etwas weiter weg gehen
   oder das Handy leicht schräg halten und auf den Bildschirm scharf tippen.
