@@ -554,6 +554,10 @@
         const films = await loadFilms("&generator=search&gsrlimit=20&gsrsearch=" + encodeURIComponent(query + " film"));
         if (query !== search.value.trim()) return; // inzwischen weitergetippt
 
+        // Filme mit genau dem gesuchten Titel zuerst (z. B. "Up" vor "Don't Look Up")
+        const exact = (film) => film.title.toLowerCase() === query.toLowerCase();
+        films.sort((a, b) => exact(b) - exact(a));
+
         galleryTitle.textContent = films.length ? 'Ergebnisse für "' + query + '"' : "Keine Filme gefunden";
         renderGallery(films);
       } catch (error) {
