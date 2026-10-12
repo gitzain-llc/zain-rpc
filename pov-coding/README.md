@@ -2,22 +2,26 @@
 
 Code zum Abtippen in VS Code, mit Endergebnis für ein Instagram-Reel.
 
-**[`film-app/index.html`](film-app/index.html):** eine Filmliste mit echten Filmplakaten,
+**[`film-app/index.html`](film-app/index.html):** eine Film-App mit echten Filmplakaten,
 im Cevio-Design (dunkel, Lila-Akzent #8a67ff, Schriften Syne + Outfit, großer
 CEVIO-Schriftzug im Hintergrund).
 
-- Filmtitel eintippen → **Enter** oder **Hinzufügen**
-- Die App sucht das **Filmplakat**, den richtigen Titel und das **Erscheinungsjahr**
-  automatisch bei Wikipedia (kostenlos, ohne Anmeldung oder API-Schlüssel)
-- Der Film landet bei **„Will ich sehen“**, **Gesehen** schiebt ihn in die Spalte
-  **„Gesehen“** (Plakat wird grau, mit lila Badge), **Nochmal** schiebt ihn zurück
-- **×** → löschen
-- Die Liste bleibt gespeichert, auch nach dem Schließen des Browsers
-- Der PC braucht Internet (für Plakate und Schriften). Ohne Internet oder wenn kein
-  Plakat gefunden wird, gibt es ein lila Plakat mit dem Anfangsbuchstaben.
-- Filme am besten mit dem **englischen bzw. Originaltitel** eintragen
+- **Entdecken:** Galerie mit 48 beliebten Filmen (von „The Godfather“ bis zu den neuesten
+  Kinofilmen), neueste zuerst, jeweils mit Plakat und Jahr
+- **Suche:** Titel eintippen, die App sucht live bei Wikipedia und zeigt passende Filme
+  mit Plakat (z. B. „Batman“, „Harry Potter“). Feld leeren → wieder die Galerie
+- **+ Merken** legt einen Film auf „Will ich sehen“, **Gesehen** direkt auf „Gesehen“
+- Oben die Tabs **Entdecken / Will ich sehen / Gesehen** mit lila Zählern.
+  In den Listen: **Gesehen** bzw. **Nochmal** verschiebt, **×** löscht
+- Alles bleibt gespeichert, auch nach dem Schließen des Browsers
+- Plakate, Titel und Jahr kommen kostenlos von Wikipedia, ohne Anmeldung und ohne
+  API-Schlüssel. Der PC braucht dafür Internet. Fehlt ein Bild, gibt es ein lila
+  Plakat mit dem Anfangsbuchstaben.
+- In der Suche am besten **englische bzw. Originaltitel** verwenden
   (z. B. „The Godfather“ statt „Der Pate“), weil die Plakate von der englischen
   Wikipedia kommen.
+- Die Galerie kannst du ganz einfach ändern: in der Liste `POPULAR` im Code
+  Filme dazuschreiben oder löschen (so wie sie auf Wikipedia heißen).
 
 Weitere Projekte im selben Stil:
 [`todo-liste/index.html`](todo-liste/index.html) (To-Do-App im Cevio-Design) und
@@ -52,9 +56,8 @@ Weitere Projekte im selben Stil:
 - In VS Code mit **Strg +** die Schrift größer machen, damit man den Code im
   Video erkennt. Dunkles Theme sieht am besten aus.
 - Das Ende **nicht im Zeitraffer**, sondern als normales Video filmen: App
-  öffnen, Vollbild, ein paar Filme eintragen und auf „Gesehen“ klicken. In
-  Instagram beide Clips hintereinander setzen, das ist der Wow-Moment.
-- Bekannte Filme eintragen (z. B. „Interstellar“, „Dune: Part Two“, „Oppenheimer“).
-  Wenn die Plakate auftauchen, ist das der Wow-Moment im Video.
+  öffnen, Vollbild, durch die Galerie scrollen, ein paar Filme merken, etwas
+  suchen und die Tabs zeigen. In Instagram beide Clips hintereinander setzen.
+- Der Wow-Moment ist das Öffnen der App: die Plakate fliegen nacheinander rein.
 - Flimmern oder Streifen beim Filmen vom Bildschirm: etwas weiter weg gehen
   oder das Handy leicht schräg halten und auf den Bildschirm scharf tippen.

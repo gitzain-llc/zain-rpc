@@ -12,7 +12,7 @@
 
     body {
       margin: 0;
-      padding: 60px 24px;
+      padding: 50px 24px;
       min-height: 100vh;
       background: radial-gradient(circle at 50% 0%, rgba(138, 103, 255, 0.18), transparent 60%), #040408;
       font-family: "Outfit", sans-serif;
@@ -35,8 +35,17 @@
 
     .app {
       position: relative;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 30px;
     }
 
     .label {
@@ -48,130 +57,129 @@
     }
 
     h1 {
-      margin: 8px 0 24px;
+      margin: 8px 0 0;
       font-family: "Syne", sans-serif;
       font-size: 48px;
       letter-spacing: -0.02em;
     }
 
-    .input-row {
+    /* Tabs oben rechts */
+    nav {
       display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    input {
-      flex: 1;
-      min-width: 0;
-      padding: 14px 20px;
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.75);
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .tab:hover {
+      border-color: rgba(138, 103, 255, 0.5);
+    }
+
+    .tab.active {
+      background: white;
+      color: #040408;
+    }
+
+    .tab span {
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: #8a67ff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    #search {
+      width: 100%;
+      padding: 16px 24px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.03);
       color: white;
       font-family: inherit;
-      font-size: 16px;
+      font-size: 17px;
       outline: none;
     }
 
-    input:focus {
+    #search:focus {
       border-color: #8a67ff;
+      box-shadow: 0 0 0 4px rgba(138, 103, 255, 0.15);
     }
 
-    input::placeholder {
+    #search::placeholder {
       color: rgba(255, 255, 255, 0.4);
     }
 
-    /* Button wie "Projekt starten" */
-    #add {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 6px 6px 20px;
-      border: none;
-      border-radius: 999px;
-      background: white;
-      font-family: inherit;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #add span {
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      border-radius: 50%;
-      background: #8a67ff;
-      color: white;
-      font-size: 22px;
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .column {
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1.6em;
-      background: rgba(18, 18, 26, 0.9);
-    }
-
     h2 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 20px;
+      margin: 30px 0 20px;
       font-family: "Syne", sans-serif;
-      font-size: 22px;
+      font-size: 24px;
     }
 
-    h2 span {
-      padding: 2px 10px;
-      border-radius: 999px;
-      background: rgba(138, 103, 255, 0.15);
-      color: #b89cff;
-      font-family: "Outfit", sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-    }
-
-    /* Filme als Raster aus Plakaten */
+    /* Raster aus Filmplakaten */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 24px;
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    .grid:empty::before {
-      content: "Noch keine Filme";
+    .list:empty::before {
+      content: "Noch keine Filme. Entdecke welche!";
       grid-column: 1 / -1;
       font-weight: 300;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .card {
       position: relative;
-      animation: slideIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      min-width: 0;
+      animation: slideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
     }
 
     .poster {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       aspect-ratio: 2 / 3;
+      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 14px;
-      background: linear-gradient(165deg, #8a67ff, #5e3fe6) center / cover;
+      background: linear-gradient(165deg, #8a67ff, #5e3fe6);
       font-family: "Syne", sans-serif;
       font-size: 48px;
-      text-transform: uppercase;
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s, filter 0.4s;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    }
+
+    .poster img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .card:hover .poster {
@@ -198,12 +206,12 @@
 
     .actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .toggle {
+    .actions button {
       flex: 1;
-      padding: 8px;
+      padding: 8px 6px;
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 999px;
       background: none;
@@ -213,43 +221,27 @@
       cursor: pointer;
     }
 
-    .remove {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 50%;
-      background: none;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .toggle:hover,
-    .remove:hover {
+    .actions button:hover {
       background: #8a67ff;
       border-color: #8a67ff;
     }
 
-    /* waehrend das Plakat geladen wird */
-    .loading .poster {
-      animation: pulse 0.8s infinite alternate;
+    .actions button:disabled {
+      opacity: 0.45;
+      background: none;
+      border-color: rgba(255, 255, 255, 0.25);
+      cursor: default;
     }
 
-    .loading .actions {
-      opacity: 0.3;
-      pointer-events: none;
+    .actions .round {
+      flex: none;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      font-size: 18px;
     }
 
-    /* gesehene Filme: grau mit Badge */
-    #watchedList .poster {
-      filter: grayscale(1) brightness(0.6);
-    }
-
-    #watchedList .card:hover .poster {
-      filter: none;
-    }
-
+    /* Badge auf gesehenen Filmen */
     #watchedList .card::before {
       content: "Gesehen";
       position: absolute;
@@ -271,16 +263,15 @@
       }
     }
 
-    @keyframes pulse {
-      from {
-        opacity: 0.3;
+    /* Handy */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
       }
-    }
 
-    /* Handy: Spalten untereinander */
-    @media (max-width: 800px) {
-      .columns {
-        grid-template-columns: 1fr;
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
       }
     }
   </style>
@@ -291,29 +282,93 @@
   </div>
 
   <div class="app">
-    <p class="label">Cevio Movies</p>
-    <h1>Meine Filmliste</h1>
+    <header>
+      <div>
+        <p class="label">Cevio Movies</p>
+        <h1>Meine Filme</h1>
+      </div>
+      <nav>
+        <button class="tab active" data-view="discover">Entdecken</button>
+        <button class="tab" data-view="watchlist">Will ich sehen <span id="watchCount">0</span></button>
+        <button class="tab" data-view="watched">Gesehen <span id="watchedCount">0</span></button>
+      </nav>
+    </header>
 
-    <div class="input-row">
-      <input id="input" placeholder="Filmtitel eingeben, z. B. Interstellar">
-      <button id="add">Hinzufügen <span>+</span></button>
-    </div>
+    <section class="view active" id="discover">
+      <input id="search" placeholder="Film suchen, z. B. Batman ...">
+      <h2 id="galleryTitle">Beliebte Filme</h2>
+      <ul class="grid" id="gallery"></ul>
+    </section>
 
-    <div class="columns">
-      <section class="column">
-        <h2>Will ich sehen <span id="watchCount">0</span></h2>
-        <ul class="grid" id="watchList"></ul>
-      </section>
-      <section class="column">
-        <h2>Gesehen <span id="watchedCount">0</span></h2>
-        <ul class="grid" id="watchedList"></ul>
-      </section>
-    </div>
+    <section class="view" id="watchlist">
+      <ul class="grid list" id="watchList"></ul>
+    </section>
+
+    <section class="view" id="watched">
+      <ul class="grid list" id="watchedList"></ul>
+    </section>
   </div>
 
   <script>
-    const input = document.getElementById("input");
-    const addButton = document.getElementById("add");
+    // beliebte Filme fuer die Galerie (so wie sie auf Wikipedia heissen)
+    const POPULAR = [
+      "Interstellar (film)",
+      "Inception",
+      "The Dark Knight",
+      "Oppenheimer (film)",
+      "Dune (2021 film)",
+      "Dune: Part Two",
+      "Barbie (film)",
+      "Avatar (2009 film)",
+      "Avatar: The Way of Water",
+      "Avatar: Fire and Ash",
+      "Titanic (1997 film)",
+      "Avengers: Endgame",
+      "Spider-Man: No Way Home",
+      "Spider-Man: Across the Spider-Verse",
+      "Joker (2019 film)",
+      "The Batman (film)",
+      "Top Gun: Maverick",
+      "Fight Club",
+      "The Matrix",
+      "Pulp Fiction",
+      "Forrest Gump",
+      "The Godfather",
+      "The Shawshank Redemption",
+      "Parasite (2019 film)",
+      "Inside Out 2",
+      "Frozen (2013 film)",
+      "Shrek",
+      "Toy Story",
+      "Up (2009 film)",
+      "Coco (2017 film)",
+      "Harry Potter and the Philosopher's Stone (film)",
+      "The Lord of the Rings: The Fellowship of the Ring",
+      "Star Wars (film)",
+      "Jurassic Park (film)",
+      "Gladiator (2000 film)",
+      "The Wolf of Wall Street (2013 film)",
+      "La La Land",
+      "Wicked (2024 film)",
+      "Deadpool & Wolverine",
+      "Back to the Future",
+      "Superman (2025 film)",
+      "Sinners (2025 film)",
+      "A Minecraft Movie",
+      "F1 (film)",
+      "Zootopia 2",
+      "The Super Mario Galaxy Movie",
+      "Mad Max: Fury Road",
+      "John Wick (film)"
+    ];
+
+    // Wikipedia liefert Plakat, Titel und Beschreibung (mit Jahr), ohne API-Schluessel
+    const API = "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*"
+      + "&prop=pageimages|description&piprop=original&pilicense=any&redirects=1";
+
+    const search = document.getElementById("search");
+    const gallery = document.getElementById("gallery");
+    const galleryTitle = document.getElementById("galleryTitle");
     const watchList = document.getElementById("watchList");
     const watchedList = document.getElementById("watchedList");
     const watchCount = document.getElementById("watchCount");
@@ -321,6 +376,30 @@
 
     // gespeicherte Filme laden
     let movies = JSON.parse(localStorage.getItem("movies")) || [];
+    let popularFilms = [];
+    let galleryFilms = [];
+
+    async function loadFilms(params) {
+      const response = await fetch(API + params);
+      const data = await response.json();
+      const pages = data.query ? data.query.pages : [];
+
+      // nur echte Filme mit Plakat, in der Reihenfolge der Suchtreffer
+      return pages
+        .filter((page) => page.original && (page.description || "").toLowerCase().includes("film"))
+        .sort((a, b) => a.index - b.index)
+        .map(toFilm);
+    }
+
+    function toFilm(page) {
+      // Jahr steht in der Beschreibung ("2014 film by ...") oder im Titel ("Dune (2021 film)")
+      const year = (page.description + " " + page.title).match(/\d{4}/);
+      return {
+        title: page.title.split(" (")[0],
+        year: year ? year[0] : "",
+        poster: page.original.source
+      };
+    }
 
     function save() {
       localStorage.setItem("movies", JSON.stringify(movies));
@@ -328,120 +407,168 @@
       const watched = movies.filter((movie) => movie.watched).length;
       watchedCount.textContent = watched;
       watchCount.textContent = movies.length - watched;
+      renderLists();
     }
 
-    // Plakat, richtigen Titel und Jahr bei Wikipedia suchen
-    async function findMovie(title) {
-      const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*"
-        + "&generator=search&gsrlimit=1&prop=pageimages|description&piprop=original&pilicense=any"
-        + "&gsrsearch=" + encodeURIComponent(title + " film");
-
-      const response = await fetch(url);
-      const data = await response.json();
-      if (!data.query) return null;
-
-      // nur Treffer nehmen, die wirklich ein Film sind
-      const page = data.query.pages[0];
-      const description = page.description || "";
-      if (!description.toLowerCase().includes("film")) return null;
-
-      const year = description.match(/\d{4}/);
-      return {
-        title: page.title.split(" (")[0],
-        year: year ? year[0] : "",
-        poster: page.original ? page.original.source : ""
-      };
+    function findSaved(film) {
+      return movies.find((movie) => movie.title === film.title);
     }
 
-    function createCard(movie) {
+    function button(text, onClick, className) {
+      const btn = document.createElement("button");
+      btn.innerHTML = text;
+      if (className) btn.className = className;
+      if (onClick) btn.addEventListener("click", onClick);
+      return btn;
+    }
+
+    function createCard(film, index) {
       const card = document.createElement("li");
       card.className = "card";
+      card.style.animationDelay = index * 0.03 + "s";
 
-      // Plakat, oder der Anfangsbuchstabe, falls kein Bild gefunden wurde
+      // Plakat mit Anfangsbuchstaben dahinter, falls das Bild fehlt
       const poster = document.createElement("div");
       poster.className = "poster";
-      if (movie.poster) {
-        poster.style.backgroundImage = 'url("' + movie.poster + '")';
-      } else {
-        poster.textContent = movie.title[0];
+      poster.textContent = film.title[0];
+
+      if (film.poster) {
+        const img = document.createElement("img");
+        img.src = film.poster;
+        img.loading = "lazy"; // erst laden, wenn man hinscrollt
+        img.onerror = () => img.remove();
+        poster.append(img);
       }
 
       const title = document.createElement("h3");
-      title.textContent = movie.title;
+      title.textContent = film.title;
 
       const year = document.createElement("p");
-      year.textContent = movie.year;
-
-      // Film in die andere Spalte verschieben
-      const toggleButton = document.createElement("button");
-      toggleButton.className = "toggle";
-      toggleButton.textContent = movie.watched ? "Nochmal" : "Gesehen";
-      toggleButton.addEventListener("click", () => {
-        movie.watched = !movie.watched;
-        movies = movies.filter((item) => item !== movie);
-        movies.push(movie); // ans Ende der Liste
-        card.remove();
-        show(movie);
-        save();
-      });
-
-      // Film loeschen
-      const removeButton = document.createElement("button");
-      removeButton.className = "remove";
-      removeButton.innerHTML = "&times;";
-      removeButton.addEventListener("click", () => {
-        movies = movies.filter((item) => item !== movie);
-        card.remove();
-        save();
-      });
+      year.textContent = film.year;
 
       const actions = document.createElement("div");
       actions.className = "actions";
-      actions.append(toggleButton, removeButton);
 
       card.append(poster, title, year, actions);
       return card;
     }
 
-    function show(movie) {
-      const card = createCard(movie);
-      const list = movie.watched ? watchedList : watchList;
-      list.append(card);
-      return card;
-    }
+    // Buttons unter einem Film in der Galerie
+    function fillGalleryActions(film, actions) {
+      actions.innerHTML = "";
+      const saved = findSaved(film);
 
-    async function addMovie() {
-      const title = input.value.trim();
-      if (title === "") return;
-      input.value = "";
-
-      const movie = { title: title, year: "", poster: "", watched: false };
-      movies.push(movie);
-      save();
-
-      // Platzhalter zeigen, waehrend das Plakat geladen wird
-      const card = show(movie);
-      card.classList.add("loading");
-      card.querySelector("p").textContent = "Suche Plakat ...";
-
-      try {
-        const info = await findMovie(title);
-        if (info) Object.assign(movie, info);
-      } catch (error) {
-        console.log("Plakat konnte nicht geladen werden:", error);
+      if (saved) {
+        const status = button(saved.watched ? "Gesehen" : "Auf der Liste");
+        status.disabled = true;
+        actions.append(status);
+        return;
       }
 
-      save();
-      card.replaceWith(createCard(movie));
+      actions.append(
+        button("+ Merken", () => addFilm(film, false, actions)),
+        button("Gesehen", () => addFilm(film, true, actions))
+      );
     }
 
-    addButton.addEventListener("click", addMovie);
-    input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") addMovie();
+    function addFilm(film, watched, actions) {
+      movies.push({ title: film.title, year: film.year, poster: film.poster, watched: watched });
+      save();
+      fillGalleryActions(film, actions);
+    }
+
+    function renderGallery(films) {
+      galleryFilms = films;
+      gallery.innerHTML = "";
+
+      films.forEach((film, index) => {
+        const card = createCard(film, index);
+        fillGalleryActions(film, card.querySelector(".actions"));
+        gallery.append(card);
+      });
+    }
+
+    function renderLists() {
+      watchList.innerHTML = "";
+      watchedList.innerHTML = "";
+
+      movies.forEach((movie, index) => {
+        const card = createCard(movie, index);
+        card.querySelector(".actions").append(
+          button(movie.watched ? "Nochmal" : "Gesehen", () => {
+            movie.watched = !movie.watched;
+            save();
+          }),
+          button("&times;", () => {
+            movies = movies.filter((item) => item !== movie);
+            save();
+          }, "round")
+        );
+
+        if (movie.watched) {
+          watchedList.append(card);
+        } else {
+          watchList.append(card);
+        }
+      });
+    }
+
+    // Tabs wechseln
+    for (const tab of document.querySelectorAll(".tab")) {
+      tab.addEventListener("click", () => {
+        document.querySelector(".tab.active").classList.remove("active");
+        document.querySelector(".view.active").classList.remove("active");
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.view).classList.add("active");
+
+        if (tab.dataset.view === "discover") renderGallery(galleryFilms);
+      });
+    }
+
+    // Suche: startet, sobald man kurz nicht mehr tippt
+    let timer;
+    search.addEventListener("input", () => {
+      clearTimeout(timer);
+      timer = setTimeout(runSearch, 400);
     });
 
-    movies.forEach(show);
+    async function runSearch() {
+      const query = search.value.trim();
+      if (query === "") {
+        galleryTitle.textContent = "Beliebte Filme";
+        renderGallery(popularFilms);
+        return;
+      }
+
+      galleryTitle.textContent = "Suche ...";
+      try {
+        const films = await loadFilms("&generator=search&gsrlimit=20&gsrsearch=" + encodeURIComponent(query + " film"));
+        if (query !== search.value.trim()) return; // inzwischen weitergetippt
+
+        galleryTitle.textContent = films.length ? 'Ergebnisse für "' + query + '"' : "Keine Filme gefunden";
+        renderGallery(films);
+      } catch (error) {
+        galleryTitle.textContent = "Keine Verbindung zu Wikipedia";
+      }
+    }
+
+    async function loadPopular() {
+      galleryTitle.textContent = "Lade Filme ...";
+      try {
+        popularFilms = await loadFilms("&titles=" + encodeURIComponent(POPULAR.join("|")));
+        popularFilms.sort((a, b) => b.year - a.year); // neueste zuerst
+
+        if (search.value.trim() === "") {
+          galleryTitle.textContent = "Beliebte Filme";
+          renderGallery(popularFilms);
+        }
+      } catch (error) {
+        galleryTitle.textContent = "Keine Verbindung zu Wikipedia";
+      }
+    }
+
     save();
+    loadPopular();
   </script>
 </body>
 </html>
