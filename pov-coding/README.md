@@ -2,15 +2,22 @@
 
 Code zum Abtippen in VS Code, mit Endergebnis für ein Instagram-Reel.
 
-**[`film-app/index.html`](film-app/index.html):** eine Filmliste im Cevio-Design
-(dunkel, Lila-Akzent #8a67ff, Schriften Syne + Outfit, großer CEVIO-Schriftzug im Hintergrund).
+**[`film-app/index.html`](film-app/index.html):** eine Filmliste mit echten Filmplakaten,
+im Cevio-Design (dunkel, Lila-Akzent #8a67ff, Schriften Syne + Outfit, großer
+CEVIO-Schriftzug im Hintergrund).
 
-- Filmtitel eintippen → **Enter** oder **Hinzufügen** → landet bei **„Will ich sehen“**
-- **Gesehen** → der Film wandert in die Spalte **„Gesehen“**
-- **Nochmal** → zurück zu „Will ich sehen“
+- Filmtitel eintippen → **Enter** oder **Hinzufügen**
+- Die App sucht das **Filmplakat**, den richtigen Titel und das **Erscheinungsjahr**
+  automatisch bei Wikipedia (kostenlos, ohne Anmeldung oder API-Schlüssel)
+- Der Film landet bei **„Will ich sehen“**, **Gesehen** schiebt ihn in die Spalte
+  **„Gesehen“** (Plakat wird grau, mit lila Badge), **Nochmal** schiebt ihn zurück
 - **×** → löschen
 - Die Liste bleibt gespeichert, auch nach dem Schließen des Browsers
-- Für die Cevio-Schriften braucht der PC Internet
+- Der PC braucht Internet (für Plakate und Schriften). Ohne Internet oder wenn kein
+  Plakat gefunden wird, gibt es ein lila Plakat mit dem Anfangsbuchstaben.
+- Filme am besten mit dem **englischen bzw. Originaltitel** eintragen
+  (z. B. „The Godfather“ statt „Der Pate“), weil die Plakate von der englischen
+  Wikipedia kommen.
 
 Weitere Projekte im selben Stil:
 [`todo-liste/index.html`](todo-liste/index.html) (To-Do-App im Cevio-Design) und
@@ -47,7 +54,7 @@ Weitere Projekte im selben Stil:
 - Das Ende **nicht im Zeitraffer**, sondern als normales Video filmen: App
   öffnen, Vollbild, ein paar Filme eintragen und auf „Gesehen“ klicken. In
   Instagram beide Clips hintereinander setzen, das ist der Wow-Moment.
-- Bekannte Filme eintragen (z. B. „Interstellar“, „Dune“, „Oppenheimer“),
-  das erkennen die Leute im Video sofort.
+- Bekannte Filme eintragen (z. B. „Interstellar“, „Dune: Part Two“, „Oppenheimer“).
+  Wenn die Plakate auftauchen, ist das der Wow-Moment im Video.
 - Flimmern oder Streifen beim Filmen vom Bildschirm: etwas weiter weg gehen
   oder das Handy leicht schräg halten und auf den Bildschirm scharf tippen.

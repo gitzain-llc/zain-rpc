@@ -12,9 +12,9 @@
 
     body {
       margin: 0;
-      padding: 60px 20px;
+      padding: 60px 24px;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 30%, rgba(138, 103, 255, 0.15), transparent 50%), #040408;
+      background: radial-gradient(circle at 50% 0%, rgba(138, 103, 255, 0.18), transparent 60%), #040408;
       font-family: "Outfit", sans-serif;
       color: white;
     }
@@ -35,7 +35,7 @@
 
     .app {
       position: relative;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -108,7 +108,8 @@
     .columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
+      align-items: start;
     }
 
     .column {
@@ -122,7 +123,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 0 0 16px;
+      margin: 0 0 20px;
       font-family: "Syne", sans-serif;
       font-size: 22px;
     }
@@ -137,59 +138,72 @@
       font-weight: 400;
     }
 
-    ul {
+    /* Filme als Raster aus Plakaten */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 20px;
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    /* Text, wenn die Liste leer ist */
-    ul:empty::before {
+    .grid:empty::before {
       content: "Noch keine Filme";
+      grid-column: 1 / -1;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.35);
     }
 
-    li {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.9em;
-      background: rgba(255, 255, 255, 0.03);
+    .card {
+      position: relative;
       animation: slideIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-      transition: background 0.2s, border-color 0.2s;
     }
 
-    li:hover {
-      background: rgba(138, 103, 255, 0.08);
-      border-color: rgba(138, 103, 255, 0.3);
-    }
-
-    /* kleines Film-Plakat mit dem ersten Buchstaben */
     .poster {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 42px;
-      height: 60px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: linear-gradient(165deg, #8a67ff, #5e3fe6);
+      aspect-ratio: 2 / 3;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      background: linear-gradient(165deg, #8a67ff, #5e3fe6) center / cover;
       font-family: "Syne", sans-serif;
-      font-size: 22px;
+      font-size: 48px;
       text-transform: uppercase;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s, filter 0.4s;
     }
 
-    li span {
-      flex: 1;
+    .card:hover .poster {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(138, 103, 255, 0.35);
+    }
+
+    .card h3 {
+      margin: 12px 0 2px;
+      font-family: "Syne", sans-serif;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card p {
+      min-height: 1.2em;
+      margin: 0 0 10px;
+      font-size: 13px;
       font-weight: 300;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
     }
 
     .toggle {
-      padding: 7px 14px;
+      flex: 1;
+      padding: 8px;
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 999px;
       background: none;
@@ -200,8 +214,8 @@
     }
 
     .remove {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       flex-shrink: 0;
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 50%;
@@ -217,13 +231,37 @@
       border-color: #8a67ff;
     }
 
-    /* gesehene Filme etwas blasser */
-    #watchedList .poster {
-      background: rgba(255, 255, 255, 0.1);
+    /* waehrend das Plakat geladen wird */
+    .loading .poster {
+      animation: pulse 0.8s infinite alternate;
     }
 
-    #watchedList span {
-      color: rgba(255, 255, 255, 0.5);
+    .loading .actions {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* gesehene Filme: grau mit Badge */
+    #watchedList .poster {
+      filter: grayscale(1) brightness(0.6);
+    }
+
+    #watchedList .card:hover .poster {
+      filter: none;
+    }
+
+    #watchedList .card::before {
+      content: "Gesehen";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #8a67ff;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
     }
 
     @keyframes slideIn {
@@ -233,8 +271,14 @@
       }
     }
 
+    @keyframes pulse {
+      from {
+        opacity: 0.3;
+      }
+    }
+
     /* Handy: Spalten untereinander */
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
       .columns {
         grid-template-columns: 1fr;
       }
@@ -251,18 +295,18 @@
     <h1>Meine Filmliste</h1>
 
     <div class="input-row">
-      <input id="input" placeholder="Filmtitel eingeben ...">
+      <input id="input" placeholder="Filmtitel eingeben, z. B. Interstellar">
       <button id="add">Hinzufügen <span>+</span></button>
     </div>
 
     <div class="columns">
       <section class="column">
         <h2>Will ich sehen <span id="watchCount">0</span></h2>
-        <ul id="watchList"></ul>
+        <ul class="grid" id="watchList"></ul>
       </section>
       <section class="column">
         <h2>Gesehen <span id="watchedCount">0</span></h2>
-        <ul id="watchedList"></ul>
+        <ul class="grid" id="watchedList"></ul>
       </section>
     </div>
   </div>
@@ -286,15 +330,47 @@
       watchCount.textContent = movies.length - watched;
     }
 
-    function show(movie) {
-      const li = document.createElement("li");
+    // Plakat, richtigen Titel und Jahr bei Wikipedia suchen
+    async function findMovie(title) {
+      const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*"
+        + "&generator=search&gsrlimit=1&prop=pageimages|description&piprop=original&pilicense=any"
+        + "&gsrsearch=" + encodeURIComponent(title + " film");
 
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!data.query) return null;
+
+      // nur Treffer nehmen, die wirklich ein Film sind
+      const page = data.query.pages[0];
+      const description = page.description || "";
+      if (!description.toLowerCase().includes("film")) return null;
+
+      const year = description.match(/\d{4}/);
+      return {
+        title: page.title.split(" (")[0],
+        year: year ? year[0] : "",
+        poster: page.original ? page.original.source : ""
+      };
+    }
+
+    function createCard(movie) {
+      const card = document.createElement("li");
+      card.className = "card";
+
+      // Plakat, oder der Anfangsbuchstabe, falls kein Bild gefunden wurde
       const poster = document.createElement("div");
       poster.className = "poster";
-      poster.textContent = movie.title[0];
+      if (movie.poster) {
+        poster.style.backgroundImage = 'url("' + movie.poster + '")';
+      } else {
+        poster.textContent = movie.title[0];
+      }
 
-      const title = document.createElement("span");
+      const title = document.createElement("h3");
       title.textContent = movie.title;
+
+      const year = document.createElement("p");
+      year.textContent = movie.year;
 
       // Film in die andere Spalte verschieben
       const toggleButton = document.createElement("button");
@@ -304,7 +380,7 @@
         movie.watched = !movie.watched;
         movies = movies.filter((item) => item !== movie);
         movies.push(movie); // ans Ende der Liste
-        li.remove();
+        card.remove();
         show(movie);
         save();
       });
@@ -315,26 +391,48 @@
       removeButton.innerHTML = "&times;";
       removeButton.addEventListener("click", () => {
         movies = movies.filter((item) => item !== movie);
-        li.remove();
+        card.remove();
         save();
       });
 
-      li.append(poster, title, toggleButton, removeButton);
+      const actions = document.createElement("div");
+      actions.className = "actions";
+      actions.append(toggleButton, removeButton);
 
-      const list = movie.watched ? watchedList : watchList;
-      list.append(li);
+      card.append(poster, title, year, actions);
+      return card;
     }
 
-    function addMovie() {
+    function show(movie) {
+      const card = createCard(movie);
+      const list = movie.watched ? watchedList : watchList;
+      list.append(card);
+      return card;
+    }
+
+    async function addMovie() {
       const title = input.value.trim();
       if (title === "") return;
-
-      const movie = { title: title, watched: false };
-      movies.push(movie);
-      show(movie);
-      save();
       input.value = "";
-      input.focus();
+
+      const movie = { title: title, year: "", poster: "", watched: false };
+      movies.push(movie);
+      save();
+
+      // Platzhalter zeigen, waehrend das Plakat geladen wird
+      const card = show(movie);
+      card.classList.add("loading");
+      card.querySelector("p").textContent = "Suche Plakat ...";
+
+      try {
+        const info = await findMovie(title);
+        if (info) Object.assign(movie, info);
+      } catch (error) {
+        console.log("Plakat konnte nicht geladen werden:", error);
+      }
+
+      save();
+      card.replaceWith(createCard(movie));
     }
 
     addButton.addEventListener("click", addMovie);
