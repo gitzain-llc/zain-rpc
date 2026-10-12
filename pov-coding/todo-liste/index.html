@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do Liste</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .app {
+      width: 420px;
+      max-width: 90vw;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.25);
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: #0ff;
+      text-shadow: 0 0 15px #0ff;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #add {
+      width: 50px;
+      border: none;
+      border-radius: 10px;
+      background: #0ff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      animation: slideIn 0.3s;
+    }
+
+    li span {
+      flex: 1;
+      cursor: pointer;
+    }
+
+    li span::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 12px;
+      border: 2px solid #0ff;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    li.done span {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    li.done span::before {
+      background: #0ff;
+    }
+
+    li button {
+      border: none;
+      background: none;
+      color: #f0f;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    #counter {
+      margin: 0;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Meine To-Dos</h1>
+    <div class="input-row">
+      <input id="input" placeholder="Was steht an?">
+      <button id="add">+</button>
+    </div>
+    <ul id="list"></ul>
+    <p id="counter"></p>
+  </div>
+
+  <script>
+    const input = document.getElementById("input");
+    const addButton = document.getElementById("add");
+    const list = document.getElementById("list");
+    const counter = document.getElementById("counter");
+
+    // gespeicherte Aufgaben laden
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+    function save() {
+      localStorage.setItem("todos", JSON.stringify(todos));
+      const open = todos.filter((todo) => !todo.done).length;
+      counter.textContent = open === 0 ? "Alles erledigt!" : open + " offen";
+    }
+
+    function show(todo) {
+      const li = document.createElement("li");
+      li.classList.toggle("done", todo.done);
+
+      // Klick auf den Text = abhaken
+      const text = document.createElement("span");
+      text.textContent = todo.text;
+      text.addEventListener("click", () => {
+        todo.done = !todo.done;
+        li.classList.toggle("done", todo.done);
+        save();
+      });
+
+      // Klick auf x = loeschen
+      const removeButton = document.createElement("button");
+      removeButton.innerHTML = "&times;";
+      removeButton.addEventListener("click", () => {
+        todos = todos.filter((item) => item !== todo);
+        li.remove();
+        save();
+      });
+
+      li.append(text, removeButton);
+      list.append(li);
+    }
+
+    function addTodo() {
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const todo = { text: text, done: false };
+      todos.push(todo);
+      show(todo);
+      save();
+      input.value = "";
+      input.focus();
+    }
+
+    addButton.addEventListener("click", addTodo);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") addTodo();
+    });
+
+    todos.forEach(show);
+    save();
+  </script>
+</body>
+</html>
