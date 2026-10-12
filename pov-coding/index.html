@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 90px;
+      letter-spacing: 12px;
+      white-space: nowrap;
+      text-shadow: 0 0 10px #0ff, 0 0 40px #0ff, 0 0 80px #f0f;
+      animation: glow 1.5s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes glow {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <h1>HELLO WORLD</h1>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    const mouse = { x: 0, y: 0 };
+    const center = { x: 0, y: 0 };
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      mouse.x = center.x = width / 2;
+      mouse.y = center.y = height / 2;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    window.addEventListener("mousemove", (event) => {
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
+    });
+
+    // Klick = neue Farben
+    let colorShift = 0;
+    window.addEventListener("click", () => {
+      colorShift += 90;
+    });
+
+    // Sterne in 3 Spiralarmen erzeugen
+    const stars = [];
+    const maxRadius = Math.max(width, height) / 2;
+
+    for (let i = 0; i < 3000; i++) {
+      const radius = Math.random() ** 1.5 * maxRadius;
+      const arm = (i % 3) * (Math.PI * 2 / 3);
+      stars.push({
+        radius: radius,
+        angle: arm + radius * 0.006 + (Math.random() - 0.5) * 0.7,
+        size: Math.random() * 2 + 0.5,
+        hue: 40 + (radius / maxRadius) * 260
+      });
+    }
+
+    let rotation = 0;
+
+    function animate() {
+      // altes Bild langsam ausblenden = Leuchtspuren
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+      ctx.fillRect(0, 0, width, height);
+
+      // Galaxie folgt sanft der Maus
+      center.x += (mouse.x - center.x) * 0.05;
+      center.y += (mouse.y - center.y) * 0.05;
+      rotation += 0.003;
+
+      ctx.globalCompositeOperation = "lighter";
+      for (const star of stars) {
+        const x = center.x + Math.cos(star.angle + rotation) * star.radius;
+        const y = center.y + Math.sin(star.angle + rotation) * star.radius * 0.6;
+
+        ctx.fillStyle = "hsl(" + (star.hue + colorShift) + ", 100%, 60%)";
+        ctx.beginPath();
+        ctx.arc(x, y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>

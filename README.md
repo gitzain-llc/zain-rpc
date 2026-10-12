@@ -1,3 +1,3 @@
 # zain-rpc
 
-- [`instagram-timelapse/`](instagram-timelapse/) – Python-Skript für Zeitraffer-Reels (Instagram, 9:16)
+- [`pov-coding/`](pov-coding/) – Code zum Abtippen für ein POV-Coding-Reel (leuchtende Galaxie)
