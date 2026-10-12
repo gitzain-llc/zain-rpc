@@ -2,9 +2,11 @@
 
 Code zum Abtippen in VS Code, mit Endergebnis für ein Instagram-Reel.
 
-**[`todo-liste/index.html`](todo-liste/index.html):** eine To-Do-App im Neon-Look.
-Aufgabe eintippen → **Enter** oder **+**. Auf den Text klicken → abhaken.
-**×** → löschen. Die Liste bleibt gespeichert, auch nach dem Schließen des Browsers.
+**[`todo-liste/index.html`](todo-liste/index.html):** eine To-Do-App im Cevio-Design
+(dunkel, Lila-Akzent #8a67ff, Schriften Syne + Outfit, großer CEVIO-Schriftzug im Hintergrund).
+Aufgabe eintippen → **Enter** oder **Hinzufügen**. Auf den Text klicken → abhaken
+(der lila Fortschrittsbalken füllt sich). **×** → löschen. Die Liste bleibt gespeichert,
+auch nach dem Schließen des Browsers. Für die Cevio-Schriften braucht der PC Internet.
 
 Bonus: [`galaxie/index.html`](galaxie/index.html) ist eine leuchtende, drehende Galaxie
 (Maus bewegen → sie folgt, klicken → neue Farben). Kann nichts, sieht aber gut aus.
