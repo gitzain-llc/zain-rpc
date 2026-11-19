@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Preis-Check – Einstellungen</title>
+    <link rel="stylesheet" href="../ui/ui.css" />
+  </head>
+  <body class="options">
+    <main>
+      <header class="top">
+        <img src="../../icons/icon48.png" width="40" height="40" alt="" />
+        <div>
+          <h1>Preis-Check für Amazon</h1>
+          <p class="muted">Black-Friday-Angebote mit echten Vorpreisen vergleichen – statt mit Fantasie-UVPs.</p>
+        </div>
+      </header>
+
+      <section class="card">
+        <h2>So funktioniert's</h2>
+        <ol class="howto">
+          <li>Öffne eine Produktseite auf Amazon (z.&nbsp;B. amazon.de). Unter dem Preis erscheint die <b>Preis-Check-Karte</b>.</li>
+          <li>Die Karte vergleicht den Angebotspreis mit dem <b>niedrigsten Preis der letzten 30 Tage</b> (gesetzliche Angabe in der EU),
+            dem durchgestrichenen Preis (UVP / „Typischer Preis“), <b>deinem eigenen Preisverlauf</b> und dem <b>Keepa-Preisverlauf</b>.</li>
+          <li>Ampel: <span class="chip good">Echtes Angebot</span> <span class="chip warn">Mittelmäßig</span> <span class="chip bad">Kein echtes Schnäppchen</span></li>
+          <li>Tipp vor Black Friday: Interessante Produkte jetzt schon <b>beobachten</b> – dann siehst du, ob der Preis vorher angehoben wurde.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Anzeige</h2>
+        <label class="row"><input type="checkbox" id="autoChart" /> Keepa-Preisverlauf auf Produktseiten automatisch laden</label>
+        <label class="row">Zeitraum des Keepa-Charts
+          <select id="chartRangeDays">
+            <option value="30">30 Tage</option>
+            <option value="90">90 Tage</option>
+            <option value="180">180 Tage</option>
+            <option value="365">1 Jahr</option>
+          </select>
+        </label>
+        <label class="row"><input type="checkbox" id="listingBadges" /> Hinweise in Suchergebnissen &amp; auf Angebotsseiten anzeigen</label>
+        <label class="row"><input type="checkbox" id="listingRecord" /> Preise aus Suchergebnissen &amp; Angebotsseiten mitspeichern</label>
+      </section>
+
+      <section class="card">
+        <h2>Merkliste</h2>
+        <label class="row">Beobachtete Artikel automatisch prüfen
+          <select id="checkIntervalHours">
+            <option value="0">nie (nur manuell)</option>
+            <option value="6">alle 6 Stunden</option>
+            <option value="12">alle 12 Stunden</option>
+            <option value="24">einmal täglich</option>
+          </select>
+        </label>
+        <label class="row"><input type="checkbox" id="notify" /> Benachrichtigen, wenn der Preis sinkt oder der Zielpreis erreicht ist</label>
+      </section>
+
+      <section class="card">
+        <h2>Daten</h2>
+        <p class="muted" id="data-stats"></p>
+        <p class="muted">Alle Daten bleiben lokal in deinem Browser. Es gibt keinen Server und kein Tracking.</p>
+        <div class="buttons">
+          <button class="btn" id="export">Exportieren (JSON)</button>
+          <label class="btn" for="import-file">Importieren…</label>
+          <input type="file" id="import-file" accept="application/json,.json" hidden />
+          <button class="btn danger" id="clear">Alle Daten löschen</button>
+        </div>
+        <p id="data-msg" class="muted" role="status"></p>
+      </section>
+
+      <p class="muted small">Gespeichert wird automatisch. Preisverlauf-Charts: Keepa. Weitere Vergleiche: CamelCamelCamel, idealo, Geizhals, Google Shopping.</p>
+    </main>
+
+    <script src="../shared/config.js"></script>
+    <script src="../shared/price.js"></script>
+    <script src="../shared/store.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

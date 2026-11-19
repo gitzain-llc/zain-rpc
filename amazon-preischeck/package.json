@@ -1,0 +1,12 @@
+{
+  "name": "amazon-preischeck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser-Extension: Amazon-Angebote (Black Friday) mit echten Vorpreisen vergleichen",
+  "scripts": {
+    "test": "node --test test/unit.test.js",
+    "e2e": "node test/e2e.js",
+    "package": "rm -rf dist && mkdir -p dist && zip -r -X dist/preischeck-extension.zip manifest.json icons src -x '*.DS_Store'"
+  },
+  "license": "MIT"
+}

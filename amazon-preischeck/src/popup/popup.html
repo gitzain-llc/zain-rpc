@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Preis-Check</title>
+    <link rel="stylesheet" href="../ui/ui.css" />
+  </head>
+  <body class="popup">
+    <header class="top">
+      <img src="../../icons/icon32.png" width="22" height="22" alt="" />
+      <h1>Preis-Check</h1>
+      <span class="spacer"></span>
+      <a href="#" id="open-options" class="link">Einstellungen</a>
+    </header>
+
+    <section id="current" hidden></section>
+
+    <section>
+      <div class="section-head">
+        <h2>Merkliste</h2>
+        <span class="spacer"></span>
+        <button id="check-now" class="btn small">Jetzt prüfen</button>
+      </div>
+      <div id="watch-status" class="muted"></div>
+      <ul id="watchlist" class="items"></ul>
+      <p id="watch-empty" class="empty" hidden>
+        Noch nichts auf der Merkliste. Öffne ein Produkt auf Amazon und klicke in der Preis-Check-Karte auf
+        <b>„Preis beobachten“</b>.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Zuletzt gesehen</h2></div>
+      <ul id="recent" class="items"></ul>
+      <p id="recent-empty" class="empty" hidden>
+        Noch keine Preise aufgezeichnet. Surf einfach auf Amazon – jeder gesehene Preis landet in deinem lokalen Verlauf.
+      </p>
+    </section>
+
+    <script src="../shared/config.js"></script>
+    <script src="../shared/price.js"></script>
+    <script src="../shared/analyze.js"></script>
+    <script src="../shared/store.js"></script>
+    <script src="../ui/dom.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

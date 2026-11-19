@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "Preis-Check für Amazon – Black Friday Fake-Rabatt-Detektor",
+  "short_name": "Preis-Check",
+  "version": "1.0.0",
+  "description": "Vergleicht Amazon-Angebote (z. B. Black Friday) mit dem 30-Tage-Tiefstpreis, deinem Preisverlauf und Keepa – und entlarvt Fake-Rabatte.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Preis-Check",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "options_page": "src/options/options.html",
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": ["storage", "alarms", "notifications", "offscreen"],
+  "host_permissions": [
+    "https://www.amazon.de/*",
+    "https://www.amazon.fr/*",
+    "https://www.amazon.it/*",
+    "https://www.amazon.es/*",
+    "https://www.amazon.nl/*",
+    "https://www.amazon.com.be/*",
+    "https://www.amazon.pl/*",
+    "https://www.amazon.se/*",
+    "https://www.amazon.co.uk/*",
+    "https://www.amazon.com/*",
+    "https://www.amazon.ca/*",
+    "https://graph.keepa.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.de/*",
+        "https://www.amazon.fr/*",
+        "https://www.amazon.it/*",
+        "https://www.amazon.es/*",
+        "https://www.amazon.nl/*",
+        "https://www.amazon.com.be/*",
+        "https://www.amazon.pl/*",
+        "https://www.amazon.se/*",
+        "https://www.amazon.co.uk/*",
+        "https://www.amazon.com/*",
+        "https://www.amazon.ca/*"
+      ],
+      "js": [
+        "src/shared/config.js",
+        "src/shared/price.js",
+        "src/shared/extract.js",
+        "src/shared/analyze.js",
+        "src/shared/store.js",
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "minimum_chrome_version": "116"
+}

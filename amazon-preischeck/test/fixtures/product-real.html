@@ -1,0 +1,34 @@
+<!doctype html>
+<!-- Test fixture: genuine discount vs. 30-day low, plus a unit price that must be ignored. -->
+<html lang="de-de">
+<head>
+  <meta charset="utf-8" />
+  <title>Testprodukt echter Rabatt</title>
+  <style>body { font-family: Arial, sans-serif; margin: 0; } #dp-container { display: flex; gap: 24px; padding: 20px; } #centerCol { width: 640px; } .a-offscreen, .aok-offscreen { position: absolute; left: -9999px; } .a-price-whole { font-size: 28px; }</style>
+</head>
+<body>
+<div id="dp" data-asin="B0TESTREAL">
+<div id="dp-container">
+  <div id="centerCol">
+    <div id="titleSection"><h1 id="title"><span id="productTitle">Testmarke Kaffeevollautomat CremaPro mit Milchsystem</span></h1></div>
+    <div id="apex_desktop">
+      <div id="corePriceDisplay_desktop_feature_div">
+        <div class="a-section a-spacing-none aok-align-center aok-relative">
+          <span class="a-size-large a-color-price savingsPercentage">-29 %</span>
+          <span class="a-price aok-align-center priceToPay" data-a-size="xl" data-a-color="base">
+            <span class="a-offscreen"></span>
+            <span aria-hidden="true"><span class="a-price-whole">1.199<span class="a-price-decimal">,</span></span><span class="a-price-fraction">00</span><span class="a-price-symbol">€</span></span>
+          </span>
+          <span class="aok-relative"><span class="a-size-small aok-offscreen"> 1.199,00 € / Stück </span><span aria-hidden="true" class="a-size-mini aok-align-center pricePerUnit">(<span class="a-price a-text-price" data-a-size="mini" data-a-color="secondary"><span class="a-offscreen">1.199,00 €</span><span aria-hidden="true">1.199,00 €</span></span> / Stück)</span></span>
+        </div>
+        <div class="a-section a-spacing-small aok-align-center">
+          <span class="a-size-small a-color-secondary aok-align-center basisPrice">Niedrigster Preis in 30 Tagen: <span class="a-price a-text-price" data-a-size="s" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">1.689,00 €</span><span aria-hidden="true">1.689,00 €</span></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" id="ASIN" name="ASIN" value="B0TESTREAL" />
+</div>
+</body>
+</html>

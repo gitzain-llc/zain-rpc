@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Test fixture modelled on the current amazon.de product page markup (deal with UVP + 30-day-low). -->
+<html lang="de-de">
+<head>
+  <meta charset="utf-8" />
+  <title>Testprodukt Fake-Rabatt</title>
+  <link rel="canonical" href="https://www.amazon.de/Testprodukt/dp/B0TESTFAKE" />
+  <style>body { font-family: Arial, sans-serif; margin: 0; } #dp-container { display: flex; gap: 24px; padding: 20px; } #imageBlock { width: 320px; height: 320px; background: #eee; } #centerCol { width: 640px; } .a-offscreen { position: absolute; left: -9999px; } .a-text-price[data-a-strike="true"] span[aria-hidden] { text-decoration: line-through; } .a-price-whole { font-size: 28px; } .savingsPercentage { color: #cc0c39; font-size: 28px; margin-right: 6px; } .a-badge-text { background: #cc0c39; color: #fff; padding: 2px 6px; font-size: 12px; }</style>
+</head>
+<body>
+<div id="dp" data-asin="B0TESTFAKE">
+<div id="dp-container">
+  <div id="imageBlock"><img id="landingImage" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" /></div>
+  <div id="centerCol">
+    <div id="titleSection"><h1 id="title"><span id="productTitle" class="a-size-large product-title-word-break">
+      Testmarke ProSound X5 Kabellose Kopfhörer mit Noise Cancelling, Schwarz
+    </span></h1></div>
+    <div id="dealBadge_feature_div"><span class="a-badge-label"><span class="a-badge-text">Black Friday Angebot</span></span></div>
+    <div id="apex_desktop">
+      <div id="corePriceDisplay_desktop_feature_div">
+        <div class="a-section a-spacing-none aok-align-center aok-relative">
+          <span class="aok-offscreen">249,00 € mit 38 Prozent Einsparungen</span>
+          <span class="a-size-large a-color-price savingsPercentage">-38 %</span>
+          <span class="a-price aok-align-center reinventPricePriceToPayMargin priceToPay" data-a-size="xl" data-a-color="base">
+            <span class="a-offscreen">249,00 €</span>
+            <span aria-hidden="true"><span class="a-price-whole">249<span class="a-price-decimal">,</span></span><span class="a-price-fraction">00</span><span class="a-price-symbol">€</span></span>
+          </span>
+        </div>
+        <div class="a-section a-spacing-small aok-align-center">
+          <span><span class="aok-relative"><span class="a-size-small a-color-secondary aok-align-center basisPrice">UVP: <span class="a-price a-text-price" data-a-size="s" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">399,00 €</span><span aria-hidden="true">399,00 €</span></span></span></span></span>
+        </div>
+        <div class="a-section a-spacing-small aok-align-center">
+          <span class="a-size-small a-color-secondary aok-align-center basisPrice">Niedrigster Preis in 30 Tagen: <span class="a-price a-text-price" data-a-size="s" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">239,00 €</span><span aria-hidden="true">239,00 €</span></span></span>
+        </div>
+      </div>
+    </div>
+    <div id="feature-bullets"><ul><li>Branchenführendes Noise Cancelling</li><li>30 Stunden Akkulaufzeit</li></ul></div>
+  </div>
+</div>
+<input type="hidden" id="ASIN" name="ASIN" value="B0TESTFAKE" />
+</div>
+</body>
+</html>
